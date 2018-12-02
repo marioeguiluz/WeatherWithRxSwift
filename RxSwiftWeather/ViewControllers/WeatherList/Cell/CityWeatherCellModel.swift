@@ -108,3 +108,9 @@ enum TemperatureCategory {
         }
     }
 }
+
+extension CityWeatherCellModel: Equatable {
+    public static func == (lhs: CityWeatherCellModel, rhs: CityWeatherCellModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
