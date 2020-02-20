@@ -18,7 +18,7 @@ final class WeatherListViewModel {
     init(weatherService: WeatherService) {
         self.weatherService = weatherService
     }
-    
+
     lazy var data: Driver<[CityWeatherCellModel]> = {
         return self.citiesInEurope.asObservable()
             .flatMapLatest(weatherService.getWeatherForCities)

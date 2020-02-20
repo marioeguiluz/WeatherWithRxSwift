@@ -21,14 +21,14 @@ final class WeatherDetailViewModel {
     }
     
     lazy var data: Driver<WeatherResult> = {
-        return self.cityName.asObservable()
+        return self.cityName
             .filter(minimumQueryCharacters())
             .flatMapLatest(weatherService.getWeatherDetails)
             .asDriver(onErrorJustReturn: WeatherResult.genericError())
     }()
     
     lazy var invalidQuery: Driver<WeatherResult> = {
-        return self.cityName.asObservable()
+        return self.cityName
             .filter({ $0.count < WeatherDetailViewModel.minimumQueryCharacters })
             .map { _ in return WeatherResult.empty() }
             .asDriver(onErrorJustReturn: WeatherResult.empty())
